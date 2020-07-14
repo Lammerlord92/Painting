@@ -1,1 +1,4 @@
+org\javcarfer\controllers\PaintController.class
+org\javcarfer\controllers\GreetingController.class
 org\javcarfer\App.class
+org\javcarfer\domain\Paint.class
