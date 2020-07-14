@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PaintController {
-
     @GetMapping(value="paintTest", produces= MediaType.APPLICATION_JSON_VALUE)
     public Paint paintTest(){
         return new Paint("Gory red","Vallejo","");
