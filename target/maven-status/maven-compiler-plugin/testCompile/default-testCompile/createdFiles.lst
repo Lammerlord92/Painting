@@ -1,1 +1,2 @@
-org\javcarfer\Application.class
+org\javcarfer\AppTest.class
+org\javcarfer\services\PaintServiceTest.class

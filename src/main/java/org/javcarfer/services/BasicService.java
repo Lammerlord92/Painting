@@ -16,16 +16,19 @@ public abstract class BasicService<T extends DomainObject> {
         return repository.stream().filter(p->id==p.getId()).findFirst().get();
     }
 
-    public void create( T object){
+    public List<T> create( T object){
         repository.add(object);
+        return repository;
     }
     //Update by name (no Id at this moment)
-    public void update(T object){
+    public List<T> update(T object){
         repository.remove(findById(object.getId()));
         repository.add(object);
+        return repository;
     }
     //Deleting by object (no Id at this moment)
-    public void delete(int id){
+    public List<T> delete(int id){
         repository.remove(findById(id));
+        return repository;
     }
 }
