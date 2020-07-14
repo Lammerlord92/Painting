@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Running server" type="JettyRunner-By-GuiKeller" factoryName="Jetty Runner">
+    <option name="JettyRunnerV130-SelectedModuleName" value="Painting" />
+    <option name="JettyRunnerV130-WebAppPath" value="/Painting" />
+    <option name="JettyRunnerV130-WebAppFolder" value="D:\Programación\Java\Painting\src\main\webapp" />
+    <option name="JettyRunnerV130-ClassesDirectory" value="D:\Programación\Java\Painting\target\classes" />
+    <option name="JettyRunnerV130-RunOnPort" value="8080" />
+    <option name="JettyRunnerV130-JettyRunnerPath" value="D:\Programación\Java\servers\jar_files\jetty-runner-9.4.8.v20171121.jar" />
+    <option name="JettyRunnerV130-JettyXML" value="" />
+    <option name="JettyRunnerV130-VmArgs" value="" />
+    <option name="JettyRunnerV130-PassParentEnvVars" value="true" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+      <option name="LaunchBrowser.Before.Run" url="http://localhost:8080/Painting" />
+    </method>
+  </configuration>
+</component>
