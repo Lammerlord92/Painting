@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
@@ -41,6 +42,15 @@ public class PaintControllerTest {
     void createTest() throws Exception {
         Paint paint=new Paint(3,"Tesla Blue","Scale75","SC-52");
         mock.perform(post("/paint")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(paint))
+        ).andDo(print());
+    }
+    @Test
+    @Order(3)
+    void updateTest() throws Exception {
+        Paint paint=new Paint(3,"Tesla Blue","Scale75","SC");
+        mock.perform(put("/paint")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(paint))
         ).andDo(print());
