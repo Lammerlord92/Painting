@@ -1,6 +1,5 @@
 package org.javcarfer.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.javcarfer.domain.Paint;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -11,11 +10,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import utils.DataFormatUtils;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
@@ -24,35 +21,37 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 public class PaintControllerTest {
 
     @Autowired
-    MockMvc mock; //Realiza peticiones
-    ObjectMapper objectMapper = new ObjectMapper();
+    private MockMvc mock; //Realiza peticiones
 
     @Test
     @Order(0)
-    void findAllTest() throws Exception {
+    public void findAllTest() throws Exception {
         mock.perform(get("/paints")).andDo(print());
     }
+
     @Test
     @Order(1)
-    void deleteTest() throws Exception {
+    public void deleteTest() throws Exception {
         mock.perform(delete("/paint?paint=1")).andDo(print());
     }
+
     @Test
     @Order(2)
-    void createTest() throws Exception {
-        Paint paint=new Paint(3,"Tesla Blue","Scale75","SC-52");
+    public void createTest() throws Exception {
+        Paint paint = new Paint(3, "Tesla Blue", "Scale75", "SC-52");
         mock.perform(post("/paint")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(paint))
+                .content(DataFormatUtils.objectToJSON(paint))
         ).andDo(print());
     }
+
     @Test
     @Order(3)
-    void updateTest() throws Exception {
-        Paint paint=new Paint(3,"Tesla Blue","Scale75","SC");
+    public void updateTest() throws Exception {
+        Paint paint = new Paint(3, "Tesla Blue", "Scale75", "SC");
         mock.perform(put("/paint")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(paint))
+                .content(DataFormatUtils.objectToJSON(paint))
         ).andDo(print());
     }
 

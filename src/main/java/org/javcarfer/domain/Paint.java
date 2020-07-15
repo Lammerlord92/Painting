@@ -1,14 +1,15 @@
 package org.javcarfer.domain;
 
-public class Paint extends DomainObject{
+public class Paint extends DomainObject {
     private String name;
     private String branch;
     private String code;
 
-    public Paint() { }
+    public Paint() {
+    }
 
-    public Paint(int id,String name, String branch, String code) {
-        this.id=id;
+    public Paint(int id, String name, String branch, String code) {
+        this.setId(id);
         this.name = name;
         this.branch = branch;
         this.code = code;
