@@ -42,7 +42,7 @@ public class PaintService {
     public List<Paint> findAll(String filter) {
         return findAll()
                 .stream()
-                .filter(paint -> paint.getName().contains(filter) || paint.getBranch().contains(filter))
+                .filter(paint -> paint.getName().contains(filter) || paint.getBrand().contains(filter))
                 .collect(Collectors.toList());
     }
 
