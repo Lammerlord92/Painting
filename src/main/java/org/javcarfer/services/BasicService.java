@@ -2,35 +2,36 @@ package org.javcarfer.services;
 
 
 import org.javcarfer.domain.DomainObject;
+import org.javcarfer.domain.Paint;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public abstract class BasicService<T extends DomainObject> {
-    protected List<T> repository;
+    protected JpaRepository<T,Integer> repository;
 
     public List<T> findAll() {
-        return repository;
+        return repository.findAll();
     }
 
     protected T findById(int id) {
-        return repository.stream().filter(p -> id == p.getId()).findFirst().get();
+        return repository.findById(id).get();
     }
 
     public List<T> create(T object) {
-        repository.add(object);
-        return repository;
+        repository.save(object);
+        return findAll();
     }
 
     //Update by name (no Id at this moment)
     public List<T> update(T object) {
-        repository.remove(findById(object.getId()));
-        repository.add(object);
-        return repository;
+        repository.save(object);
+        return findAll();
     }
 
     //Deleting by object (no Id at this moment)
     public List<T> delete(int id) {
-        repository.remove(findById(id));
-        return repository;
+        repository.deleteById(id);
+        return findAll();
     }
 }

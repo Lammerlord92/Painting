@@ -31,14 +31,8 @@ public class PaintControllerTest {
 
     @Test
     @Order(1)
-    public void deleteTest() throws Exception {
-        mock.perform(delete("/paint?paint=1")).andDo(print());
-    }
-
-    @Test
-    @Order(2)
     public void createTest() throws Exception {
-        Paint paint = new Paint(3, "Tesla Blue", "Scale75", "SC-52");
+        Paint paint = new Paint("Tesla Blue", "Scale75", "SC-52");
         mock.perform(post("/paint")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(DataFormatUtils.objectToJSON(paint))
@@ -46,13 +40,21 @@ public class PaintControllerTest {
     }
 
     @Test
-    @Order(3)
+    @Order(2)
     public void updateTest() throws Exception {
-        Paint paint = new Paint(3, "Tesla Blue", "Scale75", "SC");
+        Paint paint = new Paint( "Tesla Blue", "Scale75", "SC");
+        paint.setId(1);
         mock.perform(put("/paint")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(DataFormatUtils.objectToJSON(paint))
         ).andDo(print());
     }
+
+    @Test
+    @Order(3)
+    public void deleteTest() throws Exception {
+        mock.perform(delete("/paint?paint=1")).andDo(print());
+    }
+
 
 }

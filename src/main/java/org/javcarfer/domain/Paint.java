@@ -1,17 +1,31 @@
 package org.javcarfer.domain;
 
-public class Paint extends DomainObject {
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "paints")
+@NamedQuery(name = "Paint.findAll",query="SELECT p FROM Paint p")
+public class Paint implements Serializable {
+    private static final long serialVersionUID=1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private Integer version;
+    @NotNull
     private String name;
-    private String branch;
+    private String brand;
     private String code;
 
     public Paint() {
     }
 
-    public Paint(int id, String name, String branch, String code) {
-        this.setId(id);
+    public Paint(String name, String brand, String code) {
         this.name = name;
-        this.branch = branch;
+        this.brand = brand;
         this.code = code;
     }
 
@@ -23,12 +37,12 @@ public class Paint extends DomainObject {
         this.name = name;
     }
 
-    public String getBranch() {
-        return branch;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setBranch(String branch) {
-        this.branch = branch;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getCode() {
@@ -38,4 +52,16 @@ public class Paint extends DomainObject {
     public void setCode(String code) {
         this.code = code;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() { return version; }
+
+    public void setVersion(int version) { this.version = version; }
 }

@@ -1,22 +1,42 @@
 package org.javcarfer.services;
 
 import org.javcarfer.domain.Paint;
+import org.javcarfer.repositories.PaintRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PaintService extends BasicService<Paint> {
+public class PaintService {
+    @Autowired
+    PaintRepository repository;
 
-    @PostConstruct //After constructor
-    public void init() {
-        repository = new ArrayList<>();
-        repository.add(new Paint(0, "Iroko", "Scale75", "SC-27"));
-        repository.add(new Paint(1, "Athonian camoshade", "Citadel", ""));
-        repository.add(new Paint(2, "Gory red", "Vallejo", ""));
+
+    public List<Paint> findAll() {
+        return repository.findAll();
+    }
+
+    protected Paint findById(int id) {
+        return repository.findById(id).get();
+    }
+
+    public List<Paint> create(Paint object) {
+        repository.save(object);
+        return findAll();
+    }
+
+    //Update by name (no Id at this moment)
+    public List<Paint> update(Paint object) {
+        repository.save(object);
+        return findAll();
+    }
+
+    //Deleting by object (no Id at this moment)
+    public List<Paint> delete(int id) {
+        repository.deleteById(id);
+        return findAll();
     }
 
     public List<Paint> findAll(String filter) {
