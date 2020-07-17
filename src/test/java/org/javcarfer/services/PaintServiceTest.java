@@ -61,6 +61,6 @@ public class PaintServiceTest {
 
     private void checkObjects(){
         List<Paint> paints=service.findAll();
-        paints.forEach(x->System.out.println(x.getId()+", "+x.getName()+", "+x.getBranch()+", "+x.getCode()));
+        paints.forEach(x->System.out.println(x.getId()+", "+x.getName()+", "+x.getBrand()+", "+x.getCode()));
     }
 }
