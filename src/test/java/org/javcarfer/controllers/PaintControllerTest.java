@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import utils.DataFormatUtils;
@@ -49,7 +48,7 @@ public class PaintControllerTest {
     @WithMockUser(username="user1",roles={"USER"})
     public void updateTest() throws Exception {
         Paint paint = new Paint( "Tesla Blue", "Scale75", "SC");
-        paint.setId(new Long(1));
+        paint.setId(1);
         mock.perform(put("/paints")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(DataFormatUtils.objectToJSON(paint))

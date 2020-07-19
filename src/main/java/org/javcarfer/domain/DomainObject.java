@@ -1,8 +1,12 @@
 package org.javcarfer.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
+/** Represents a persistent object that will be used in a DB.
+ * @author Javier Carmona
+ * @version 1.0
+ * @since 1.0
+ */
 @Entity
 @Access(AccessType.PROPERTY)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -13,17 +17,17 @@ public abstract class DomainObject{
 
     // Identification ---------------------------------------------------------
 
-    private Long  id;
+    private Integer  id;
     private Integer  version;
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "IdGenerator")
     @TableGenerator(table = "SEQUENCES", name = "IdGenerator")
-    public Long  getId() {
+    public Integer  getId() {
         return id;
     }
 
-    public void setId(Long  id) {
+    public void setId(Integer  id) {
         this.id = id;
     }
 
@@ -47,7 +51,7 @@ public abstract class DomainObject{
         else if (other == null)
             result = false;
         else if (other instanceof Integer)
-            result = (this.getId() == (Long) other);
+            result = (this.getId() == (Integer) other);
         else if (!this.getClass().isInstance(other))
             result = false;
         else

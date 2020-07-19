@@ -2,7 +2,6 @@ package org.javcarfer.services;
 
 
 import org.javcarfer.domain.DomainObject;
-import org.javcarfer.domain.Paint;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

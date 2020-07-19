@@ -11,9 +11,15 @@ import java.util.List;
 @CrossOrigin(origins="*")
 @RestController
 public class PaintController {
+    // Supporting services ----------------------------------------------------
     @Autowired
     private PaintService service;
 
+    // Constructors -----------------------------------------------------------
+    public PaintController() {
+    }
+
+    // CRUD -------------------------------------------------------------------
     //Get
     @GetMapping(value = "paints", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Paint> findAll() {
@@ -39,7 +45,7 @@ public class PaintController {
 
     //Deleting
     @DeleteMapping(value = "paints", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Paint> delete(@RequestParam("paint") Long id) {
+    public List<Paint> delete(@RequestParam("paint") Integer id) {
         return service.delete(id);
     }
 

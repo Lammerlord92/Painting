@@ -5,26 +5,34 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/** Represents a paint, reflex information about the paint and company for an easy location.
+ * @author Javier Carmona
+ * @version 1.0
+ * @since 1.0
+ */
 @Entity
 @Table(name = "paints")
 @Access(AccessType.PROPERTY)
 @NamedQuery(name = "Paint.findAll",query="SELECT p FROM Paint p")
 public class Paint extends DomainObject implements Serializable {
     private static final long serialVersionUID=1L;
-
-    @NotNull
-    private String name;
-    private String brand;
-    private String code;
-
+    // Constructors -----------------------------------------------------------
     public Paint() {
+        super();
     }
 
     public Paint(String name, String brand, String code) {
+        super();
         this.name = name;
         this.brand = brand;
         this.code = code;
     }
+
+    // Attributes -------------------------------------------------------------
+    @NotNull
+    private String name;
+    private String brand;
+    private String code;
 
     public String getName() {
         return name;

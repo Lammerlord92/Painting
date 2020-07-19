@@ -1,12 +1,21 @@
-/*package org.javcarfer.security;
+package org.javcarfer.security;
 
 import org.javcarfer.domain.DomainObject;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.Assert;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Collection;
 
+/** Represents the user acount that will be in the system.
+ * @author Javier Carmona
+ * @version 1.0
+ * @since 1.0
+ */
 @Entity
 @Access(AccessType.PROPERTY)
 public class UserAccount extends DomainObject implements UserDetails {
@@ -17,14 +26,13 @@ public class UserAccount extends DomainObject implements UserDetails {
 
     public UserAccount() {
         super();
-
         this.authorities = new ArrayList<Authority>();
     }
 
     // Attributes -------------------------------------------------------------
 
-    // UserDetails interface --------------------------------------------------
 
+    // UserDetails interface --------------------------------------------------
     private String username;
     private String password;
     private Collection<Authority> authorities;
@@ -102,4 +110,3 @@ public class UserAccount extends DomainObject implements UserDetails {
     }
 
 }
-*/
