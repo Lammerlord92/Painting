@@ -8,44 +8,10 @@
     <body> 
         <div class="nav-bar"></div>
         <div id="app">
-            <div class="product row">
-                
-                <div class="product-image col-sm">
-                    <a :href="link"><img :src="image" class="img-thumbnail"></a>
-                    
-                </div>
-
-                <div class="product-info col-sm">
-                    <h1>{{ title }}</h1>
-                    <p v-if="onSale">On Sale!</p>
-
-                    <ul>
-                        <li v-for="detail in details">{{detail}}</li>
-                    </ul>
-                    <div v-for="(variant,index) in variants" 
-                    :key="variant.variantId"
-                    class="color-box col-sm"
-                    @mouseover="updateProduct(index)">
-                        <div class="col-sm" :style="{backgroundColor:variant.variantColor}">
-                            <p>{{variant.variantColor}}</p>
-                        </div>  
-                        <div class="col-sm">  
-                            <p v-if="variant.variantQuantity > 5">In stock</p>
-                            <p v-else-if="variant.variantQuantity <= 5 && variant.variantQuantity > 0">Almost sold out!</p>
-                            <p v-else>Out of stock</p>
-                            <button v-on:click="addToCart" 
-                                    :disabled="!variantInStock(index)"
-                                    :class="{disabledButton: !variant.variantQuantity>0}">
-                                    Add to cart</button>
-                            <button v-if="variant.variantCart>0" v-on:click="removeFromCart">Remove from cart</button>
-                            <div class="variant.variantCart">
-                                <p>Cart ({{variant.variantCart}})</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="cart">
+                <p></p>
             </div>
+            <product :premium="premium" @add-to-cart="addToCart"></product>
         </div>
 
         <!-- versión de desarrollo, incluye advertencias de ayuda en la consola -->
