@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: org.javcarfer.controllers.PaintControllerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.672 s - in org.javcarfer.controllers.PaintControllerTest
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 7.445 s <<< FAILURE! - in org.javcarfer.controllers.PaintControllerTest
+deleteTest  Time elapsed: 0.027 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.dao.EmptyResultDataAccessException: No class org.javcarfer.domain.Paint entity with id 1 exists!
+	at org.javcarfer.controllers.PaintControllerTest.deleteTest(PaintControllerTest.java:58)
+Caused by: org.springframework.dao.EmptyResultDataAccessException: No class org.javcarfer.domain.Paint entity with id 1 exists!
+	at org.javcarfer.controllers.PaintControllerTest.deleteTest(PaintControllerTest.java:58)
+

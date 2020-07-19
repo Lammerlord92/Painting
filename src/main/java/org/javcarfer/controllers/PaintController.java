@@ -26,20 +26,20 @@ public class PaintController {
     }
 
     //Create
-    @PostMapping(value = "paint", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Paint> create(@RequestBody Paint paint) {
         return service.create(paint);
     }
 
     //Update
-    @PutMapping(value = "paint", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Paint> update(@RequestBody Paint paint) {
         return service.update(paint);
     }
 
     //Deleting
-    @DeleteMapping(value = "paint", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Paint> delete(@RequestParam("paint") int id) {
+    @DeleteMapping(value = "paints", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Paint> delete(@RequestParam("paint") Long id) {
         return service.delete(id);
     }
 

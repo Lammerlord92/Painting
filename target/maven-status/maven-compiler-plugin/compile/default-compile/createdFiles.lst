@@ -1,4 +1,5 @@
 org\javcarfer\controllers\PaintController.class
+org\javcarfer\security\SecurityConfig.class
 org\javcarfer\services\BasicService.class
 org\javcarfer\controllers\GreetingController.class
 org\javcarfer\domain\Paint.class

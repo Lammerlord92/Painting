@@ -18,7 +18,7 @@ public class PaintService {
         return repository.findAll();
     }
 
-    protected Paint findById(int id) {
+    protected Paint findById(Long id) {
         return repository.findById(id).get();
     }
 
@@ -34,7 +34,7 @@ public class PaintService {
     }
 
     //Deleting by object (no Id at this moment)
-    public List<Paint> delete(int id) {
+    public List<Paint> delete(Long id) {
         repository.deleteById(id);
         return findAll();
     }

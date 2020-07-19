@@ -7,14 +7,11 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "paints")
+@Access(AccessType.PROPERTY)
 @NamedQuery(name = "Paint.findAll",query="SELECT p FROM Paint p")
-public class Paint implements Serializable {
+public class Paint extends DomainObject implements Serializable {
     private static final long serialVersionUID=1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private Integer version;
     @NotNull
     private String name;
     private String brand;
@@ -53,15 +50,4 @@ public class Paint implements Serializable {
         this.code = code;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Integer getVersion() { return version; }
-
-    public void setVersion(int version) { this.version = version; }
 }
