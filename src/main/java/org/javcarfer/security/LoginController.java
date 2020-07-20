@@ -23,12 +23,11 @@ public class LoginController {
     }
 
     // Login ------------------------------------------------------------------
-
+    //TODO: Create JWT, find how to check
     @GetMapping(value="login", produces = MediaType.APPLICATION_JSON_VALUE)
     public String login(@Valid @ModelAttribute @RequestBody LoginCredentials credentials) {
         Assert.notNull(credentials);
         return "aaaa";
     }
-
-
+    //TODO: Create register method
 }
