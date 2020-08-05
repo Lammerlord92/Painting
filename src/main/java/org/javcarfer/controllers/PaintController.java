@@ -3,12 +3,14 @@ package org.javcarfer.controllers;
 import org.javcarfer.domain.Paint;
 import org.javcarfer.services.PaintService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins="*")
+//@CrossOrigin(origins="http://localhost:4200") Only angular
 @RestController
 public class PaintController {
     // Supporting services ----------------------------------------------------
@@ -33,6 +35,7 @@ public class PaintController {
 
     //Create
     @PostMapping(value = "paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public List<Paint> create(@RequestBody Paint paint) {
         return service.create(paint);
     }

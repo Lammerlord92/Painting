@@ -10,6 +10,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 /** Represents the user acount that will be in the system.
  * @author Javier Carmona
@@ -36,7 +37,12 @@ public class UserAccount extends DomainObject implements UserDetails {
     private String username;
     private String password;
     private Collection<Authority> authorities;
+    private Date createdAt;
 
+    @PrePersist
+    public void prePersist(){
+        createdAt=new Date();
+    }
     @Size(min = 5, max = 32)
     @Column(unique = true)
     @Override
@@ -56,6 +62,15 @@ public class UserAccount extends DomainObject implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @NotEmpty
