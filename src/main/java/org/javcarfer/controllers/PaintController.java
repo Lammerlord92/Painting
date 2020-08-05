@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins="*")
-//@CrossOrigin(origins="http://localhost:4200") Only angular
+//@CrossOrigin(origins="*")
+@CrossOrigin(origins= {"http://localhost:4200"}) //Only angular
 @RestController
 public class PaintController {
     // Supporting services ----------------------------------------------------

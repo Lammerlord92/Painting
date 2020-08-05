@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/paints").hasRole("ADMIN")
+                //.antMatchers(HttpMethod.POST,"/paints").hasRole("ADMIN")
                 .antMatchers("/paints").anonymous()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/register").anonymous()
