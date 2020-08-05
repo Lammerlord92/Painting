@@ -1,4 +1,4 @@
-package org.javcarfer.security;
+package org.javcarfer.security.users;
 
 import javax.validation.constraints.Size;
 

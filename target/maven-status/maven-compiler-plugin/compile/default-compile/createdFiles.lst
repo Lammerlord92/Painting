@@ -1,9 +1,0 @@
-org\javcarfer\controllers\PaintController.class
-org\javcarfer\security\SecurityConfig.class
-org\javcarfer\services\BasicService.class
-org\javcarfer\controllers\GreetingController.class
-org\javcarfer\domain\Paint.class
-org\javcarfer\services\PaintService.class
-org\javcarfer\domain\DomainObject.class
-org\javcarfer\App.class
-org\javcarfer\repositories\PaintRepository.class

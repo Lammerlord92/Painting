@@ -1,4 +1,4 @@
-package org.javcarfer.security;
+package org.javcarfer.security.users;
 
 import org.javcarfer.domain.DomainObject;
 import org.springframework.security.core.userdetails.UserDetails;

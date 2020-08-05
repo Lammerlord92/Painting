@@ -1,4 +1,4 @@
-package org.javcarfer.security;
+package org.javcarfer.security.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,7 +14,7 @@ public class LoginController {
     // Supporting services ----------------------------------------------------
 
     @Autowired
-    LoginService service;
+    UserService service;
 
     // Constructors -----------------------------------------------------------
 

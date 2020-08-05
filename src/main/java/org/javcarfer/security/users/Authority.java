@@ -1,10 +1,8 @@
-package org.javcarfer.security;
+package org.javcarfer.security.users;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
@@ -35,6 +33,8 @@ public class Authority implements GrantedAuthority {
 
     // Attributes -------------------------------------------------------------
 
+
+    @Enumerated(EnumType.STRING)
     private String authority;
 
     @NotBlank

@@ -1,4 +1,4 @@
-package org.javcarfer.security;
+package org.javcarfer.security.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 @Service
-public class LoginService implements UserDetailsService {
+public class UserService implements UserDetailsService {
 
     // Managed repository -----------------------------------------------------
 
@@ -30,7 +30,6 @@ public class LoginService implements UserDetailsService {
         Assert.notNull(result);
         // WARNING: The following sentences prevent lazy initialisation problems!
         Assert.notNull(result.getAuthorities());
-        result.getAuthorities().size();
 
         return result;
     }

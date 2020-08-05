@@ -1,4 +1,4 @@
-package org.javcarfer.security;
+package org.javcarfer.security.users;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

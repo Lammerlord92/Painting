@@ -9,9 +9,12 @@
         <div class="nav-bar"></div>
         <div id="app">
             <div class="cart">
-                <p></p>
+                <p>You have {{ cartObjectNumber }} items in your cart</p>
             </div>
             <product :premium="premium" @add-to-cart="addToCart"></product>
+            
+            
+
         </div>
 
         <!-- versión de desarrollo, incluye advertencias de ayuda en la consola -->
