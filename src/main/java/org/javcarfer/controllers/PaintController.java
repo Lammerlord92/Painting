@@ -51,7 +51,7 @@ public class PaintController {
 
     //Deleting
     @DeleteMapping(value = "paints", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Paint> delete(@RequestParam("paint") Integer id) {
+    public Paint delete(@RequestParam("paint") Integer id) {
         return service.delete(id);
     }
 

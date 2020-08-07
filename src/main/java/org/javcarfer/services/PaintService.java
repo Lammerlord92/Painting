@@ -34,9 +34,10 @@ public class PaintService {
     }
 
     //Deleting by object (no Id at this moment)
-    public List<Paint> delete(Integer id) {
+    public Paint delete(Integer id) {
+        Paint res=findById(id);
         repository.deleteById(id);
-        return findAll();
+        return res;
     }
 
     public List<Paint> findAll(String filter) {
