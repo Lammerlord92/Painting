@@ -28,10 +28,15 @@ public class PaintController {
         return service.findAll();
     }
 
-    @GetMapping(value = "paints/{filter}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Paint> findAll(@PathVariable String filter) {
-        return service.findAll(filter);
+    @GetMapping(value = "paints/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Paint findOne(@PathVariable Integer id) {
+        return service.findById(id);
     }
+
+ //   @GetMapping(value = "paints/{filter}", produces = MediaType.APPLICATION_JSON_VALUE)
+ //   public List<Paint> findAll(@PathVariable String filter) {
+ //       return service.findAll(filter);
+ //   }
 
     //Create
     @PostMapping(value = "paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

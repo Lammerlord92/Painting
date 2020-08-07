@@ -18,7 +18,7 @@ public class PaintService {
         return repository.findAll();
     }
 
-    protected Paint findById(Integer id) {
+    public Paint findById(Integer id) {
         return repository.findById(id).get();
     }
 
