@@ -28,10 +28,19 @@ public class Paint extends DomainObject implements Serializable {
         this.code = code;
     }
 
+    public Paint(String name, String brand, String code, String range) {
+        super();
+        this.name = name;
+        this.brand = brand;
+        this.code = code;
+        this.range=range;
+    }
+
     // Attributes -------------------------------------------------------------
     @NotNull
     private String name;
     private String brand;
+    private String range;
     private String code;
 
     public String getName() {
@@ -50,12 +59,11 @@ public class Paint extends DomainObject implements Serializable {
         this.brand = brand;
     }
 
-    public String getCode() {
-        return code;
-    }
+    public String getRange() { return range; }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+    public void setRange(String range) { this.range = range; }
 
+    public String getCode() { return code; }
+
+    public void setCode(String code) { this.code = code; }
 }

@@ -29,9 +29,7 @@ public class PaintController {
     }
 
     @GetMapping(value = "paints/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Paint findOne(@PathVariable Integer id) {
-        return service.findById(id);
-    }
+    public Paint findOne(@PathVariable Integer id) {return service.findById(id); }
 
  //   @GetMapping(value = "paints/{filter}", produces = MediaType.APPLICATION_JSON_VALUE)
  //   public List<Paint> findAll(@PathVariable String filter) {
@@ -47,7 +45,7 @@ public class PaintController {
 
     //Update
     @PutMapping(value = "paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Paint> update(@RequestBody Paint paint) {
+    public Paint update(@RequestBody Paint paint) {
         return service.update(paint);
     }
 

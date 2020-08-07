@@ -28,9 +28,9 @@ public class PaintService {
     }
 
     //Update by name (no Id at this moment)
-    public List<Paint> update(Paint object) {
+    public Paint update(Paint object) {
         repository.save(object);
-        return findAll();
+        return object;
     }
 
     //Deleting by object (no Id at this moment)
