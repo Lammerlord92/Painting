@@ -33,7 +33,7 @@ public class PaintService {
         return object;
     }
 
-    //Deleting by object (no Id at this moment)
+    //Deleting by id
     public Paint delete(Integer id) {
         Paint res=findById(id);
         repository.deleteById(id);
