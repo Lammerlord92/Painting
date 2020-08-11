@@ -3,6 +3,7 @@ package org.javcarfer.domain;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 /** Represents a paint, reflex information about the paint and company for an easy location.
@@ -37,8 +38,9 @@ public class Paint extends DomainObject implements Serializable {
     }
 
     // Attributes -------------------------------------------------------------
-    @NotNull
+    @Column(nullable = false, unique = true)
     private String name;
+    @Column(nullable = false)
     private String brand;
     private String brandRange;
     private String code;

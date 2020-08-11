@@ -28,15 +28,16 @@ public class PaintController {
 
     // CRUD -------------------------------------------------------------------
     //Get
-    @GetMapping(value = "paints", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/paints", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Paint> findAll() {
         return service.findAll();
     }
 
-    @GetMapping(value = "paints/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/paints/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findOne(@PathVariable Integer id) {
         Paint paint=null;
         Map<String, Object> response=new HashMap<>();
+
         try{
             paint= service.findById(id);
         }catch (DataAccessException e){
@@ -49,6 +50,7 @@ public class PaintController {
             response.put("message", "The paint with id: "+id+" doesn't exits");
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
         }
+
         return new ResponseEntity<Paint>(paint,HttpStatus.OK);
     }
 
@@ -58,20 +60,32 @@ public class PaintController {
  //   }
 
     //Create
-    @PostMapping(value = "paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
-    public List<Paint> create(@RequestBody Paint paint) {
-        return service.create(paint);
+    @PostMapping(value = "/paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> create(@RequestBody Paint paint) {
+        Paint result=null;
+        Map<String, Object> response=new HashMap<>();
+
+        try {
+            result=service.create(paint);
+        }catch (DataAccessException e){
+            response.put("message", "Database query error");
+            response.put("error", e.getCause().getMessage());
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put("message","Paint created successfully");
+        response.put("paint",result);
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
 
     //Update
-    @PutMapping(value = "paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Paint update(@RequestBody Paint paint) {
         return service.update(paint);
     }
 
     //Deleting
-    @DeleteMapping(value = "paints/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/paints/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Paint delete(@PathVariable Integer id) { return service.delete(id); }
 
 }

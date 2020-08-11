@@ -22,9 +22,8 @@ public class PaintService {
         return repository.findById(id).get();
     }
 
-    public List<Paint> create(Paint object) {
-        repository.save(object);
-        return findAll();
+    public Paint create(Paint object) {
+        return repository.save(object);
     }
 
     //Update by name (no Id at this moment)
