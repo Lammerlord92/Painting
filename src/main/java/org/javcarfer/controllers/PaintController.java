@@ -13,6 +13,7 @@ import sun.rmi.transport.ObjectTable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 //@CrossOrigin(origins="*")
 @CrossOrigin(origins= {"http://localhost:4200"}) //Only angular
@@ -44,10 +45,8 @@ public class PaintController {
             response.put("message", "Database query error");
             response.put("error", e.getCause().getMessage());
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        if(paint==null){
-            response.put("message", "The paint with id: "+id+" doesn't exits");
+        }catch (NoSuchElementException e){
+            response.put("message", "The paint doesn't exits");
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
         }
 
@@ -80,12 +79,41 @@ public class PaintController {
 
     //Update
     @PutMapping(value = "/paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Paint update(@RequestBody Paint paint) {
-        return service.update(paint);
+    public ResponseEntity<?> update(@RequestBody Paint paint) {
+        Paint result=null;
+        Map<String, Object> response=new HashMap<>();
+
+        if(paint==null){
+            response.put("message", "The paint doesn't exits");
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+        }
+        try {
+            result=service.update(paint);
+        }catch (DataAccessException e){
+            response.put("message", "Database query error");
+            response.put("error", e.getCause().getMessage());
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put("message","Paint updated successfully");
+        response.put("paint",result);
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
     }
 
     //Deleting
     @DeleteMapping(value = "/paints/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Paint delete(@PathVariable Integer id) { return service.delete(id); }
+    public ResponseEntity<?> delete(@PathVariable Integer id) {
+        Map<String, Object> response=new HashMap<>();
+
+        try {
+            service.delete(id);
+        }catch (DataAccessException e){
+            response.put("message", "Database query error");
+            response.put("error", e.getCause().getMessage());
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        response.put("message","Paint deleted successfully");
+        return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
+    }
 
 }
