@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import sun.rmi.transport.ObjectTable;
 
@@ -19,7 +20,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 //@CrossOrigin(origins="*")
-@CrossOrigin(origins= {"http://localhost:4200"}) //Only angular
+@CrossOrigin(origins= {"http://localhost:4200"}) //Only
 @RestController
 public class PaintController {
     // Supporting services ----------------------------------------------------
@@ -67,7 +68,7 @@ public class PaintController {
         Paint res=null;
         Map<String, Object> response=new HashMap<>();
         if ((result.hasErrors())){
-            List<String> errors=result.getFieldErrors().stream().map(err -> "The field '"+err.getField()+"' "+err.getDefaultMessage()).collect(Collectors.toList());
+            List<String> errors=result.getFieldErrors().stream().map(err -> "'"+err.getField()+"' "+err.getDefaultMessage()).collect(Collectors.toList());
             response.put("errors",errors);
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
         }
@@ -90,7 +91,7 @@ public class PaintController {
         Paint res=null;
         Map<String, Object> response=new HashMap<>();
         if ((result.hasErrors())){
-            List<String> errors=result.getFieldErrors().stream().map(err -> "The field '"+err.getField()+"' "+err.getDefaultMessage()).collect(Collectors.toList());
+            List<String> errors=result.getFieldErrors().stream().map(err -> "'"+err.getField()+"' "+err.getDefaultMessage()).collect(Collectors.toList());
             response.put("errors",errors);
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
         }
