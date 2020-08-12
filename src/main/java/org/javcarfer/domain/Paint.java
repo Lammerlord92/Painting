@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 /** Represents a paint, reflex information about the paint and company for an easy location.
@@ -38,8 +39,10 @@ public class Paint extends DomainObject implements Serializable {
     }
 
     // Attributes -------------------------------------------------------------
+    @NotEmpty
     @Column(nullable = false, unique = true)
     private String name;
+    @NotEmpty
     @Column(nullable = false)
     private String brand;
     private String brandRange;
