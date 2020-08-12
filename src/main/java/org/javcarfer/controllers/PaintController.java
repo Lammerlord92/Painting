@@ -7,13 +7,16 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sun.rmi.transport.ObjectTable;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 //@CrossOrigin(origins="*")
 @CrossOrigin(origins= {"http://localhost:4200"}) //Only angular
@@ -60,12 +63,16 @@ public class PaintController {
 
     //Create
     @PostMapping(value = "/paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> create(@RequestBody Paint paint) {
-        Paint result=null;
+    public ResponseEntity<?> create(@Valid @RequestBody Paint paint, BindingResult result) {
+        Paint res=null;
         Map<String, Object> response=new HashMap<>();
-
+        if ((result.hasErrors())){
+            List<String> errors=result.getFieldErrors().stream().map(err -> "The field '"+err.getField()+"' "+err.getDefaultMessage()).collect(Collectors.toList());
+            response.put("errors",errors);
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
+        }
         try {
-            result=service.create(paint);
+            res=service.create(paint);
         }catch (DataAccessException e){
             response.put("message", "Database query error");
             response.put("error", e.getCause().getMessage());
@@ -73,22 +80,26 @@ public class PaintController {
         }
 
         response.put("message","Paint created successfully");
-        response.put("paint",result);
+        response.put("paint",res);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
     }
 
     //Update
     @PutMapping(value = "/paints", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(@RequestBody Paint paint) {
-        Paint result=null;
+    public ResponseEntity<?> update(@Valid @RequestBody Paint paint, BindingResult result) {
+        Paint res=null;
         Map<String, Object> response=new HashMap<>();
-
+        if ((result.hasErrors())){
+            List<String> errors=result.getFieldErrors().stream().map(err -> "The field '"+err.getField()+"' "+err.getDefaultMessage()).collect(Collectors.toList());
+            response.put("errors",errors);
+            return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
+        }
         if(paint==null){
             response.put("message", "The paint doesn't exits");
             return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
         }
         try {
-            result=service.update(paint);
+            res=service.update(paint);
         }catch (DataAccessException e){
             response.put("message", "Database query error");
             response.put("error", e.getCause().getMessage());
@@ -96,7 +107,7 @@ public class PaintController {
         }
 
         response.put("message","Paint updated successfully");
-        response.put("paint",result);
+        response.put("paint",res);
         return new ResponseEntity<Map<String,Object>>(response,HttpStatus.OK);
     }
 
